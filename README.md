@@ -1,16 +1,26 @@
 # pdf-vlm
 
-# Setup
+pdf-vlm is a tool designed to enable multi-modal summarization of PDF documents using vLLM. 
 
-Install vLLM and install [pdf2image](https://github.com/Belval/pdf2image?tab=readme-ov-file#how-to-install)
+By converting each page of a PDF into an image, pdf-vlm sends batches of images to a vLLM server hosting a multi-modal model (such as Pixtral-12B-FP8). 
+The server processes these images and generates preliminary JSON summaries for each chunk, which are later aggregated into a final, coherent summary of the document. 
+This approach allows users to extract structured insights from long-form PDFs — combining visual and textual information for efficient content analysis.
+
+The key tuning parameters are:
+
+* On the vLLM server, set `--limit-mm-per-prompt` image=5 to control the maximum number of image inputs per prompt.
+* In the client, set `--images_per_chunk 5` to define how many PDF pages are processed together in each summarization request.
+
+## Setup
+
+Install [vLLM](https://github.com/vllm-project/vllm) and install [pdf2image](https://github.com/Belval/pdf2image?tab=readme-ov-file#how-to-install)
 
 ```
 sudo apt install poppler-utils
 pip install -r requirements.txt
 ```
 
-
-# Example Usage
+## Example Usage
 
 Here is an example of using vLLM hosting Pixtral-12B-FP8 on 1xH100 to produce a summary of the paper 
 
