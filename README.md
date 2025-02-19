@@ -22,7 +22,7 @@ pip install -r requirements.txt
 
 ## Example Usage
 
-Here is an example of using vLLM hosting Pixtral-12B-FP8 on 1xH100 to produce a summary of the paper 
+Here is an example of using vLLM hosting Pixtral-12B-FP8 on 1xH100 to produce a summary of the paper ["Native Sparse Attention: Hardware-Aligned and Natively Trainable Sparse Attention"](https://arxiv.org/abs/2502.11089)
 
 **Server:**
 ```
